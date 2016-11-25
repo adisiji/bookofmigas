@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.common.ErrorDialogFragment;
 
 import nb.scode.bukumigas.app.App;
 import nb.scode.bukumigas.dialogs.ErrorStartDialog;
@@ -136,7 +134,7 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
             myWebView.loadUrl(pathurl);
         }
         else {
-            ErrorStartDialog errorDialog = ErrorStartDialog.newInstance("No Connection!");
+            ErrorStartDialog errorDialog = ErrorStartDialog.newInstance(getString(R.string.msg_network_error));
             loadErrorPage(myWebView);
             errorDialog.show(fm,"vb_fragment");
         }

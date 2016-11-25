@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.jaredrummler.android.device.DeviceName;
 
@@ -49,7 +50,6 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
     private static ErrorStartDialog errorDialog;
     private Handler handler;
     private Runnable runnableCode;
-    private static final String errormsg = "Error Connecting to Server!";
 
     @Override
     public void onClickAlert(){
@@ -77,7 +77,7 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
                     fresh = true;
                     login();
                 } else if(sp%3==0) {
-                    showAlert(errormsg);
+                    showAlert(getString(R.string.error_server_connect));
                 } else {
                     // Repeat this the same runnable code block again another 2.5 seconds
                     sp++;
@@ -110,10 +110,9 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
                         if(username.length() > 24){
                             username = username.substring(0,24);
                         }
+                    caritoken();
                     }
                 });
-                Log.e("let's find toke","GOOD");
-                caritoken();
             }
         }
         else
@@ -157,7 +156,7 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
 
                             if (App.getInstance().authorize(response)) {
                                 if (App.getInstance().getState() == ACCOUNT_STATE_ENABLED) {
-                                    App.getInstance().updateGeoLocation();
+                                    //App.getInstance().updateGeoLocation();
                                     success();
                                 } else {
                                     if (App.getInstance().getState() == ACCOUNT_STATE_BLOCKED ) {
@@ -171,7 +170,6 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
                                 }
 
                             } else {
-
                                 registerPhone();
                                 //Toast.makeText(getApplicationContext(), getString(R.string.error_signin), Toast.LENGTH_SHORT).show();
                             }
@@ -184,8 +182,8 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.e("Error login","CKKCK");
-                    showAlert(errormsg);
-
+                    showAlert(getString(R.string.error_server_connect));
+                    Crashlytics.log("Error Login");
                     loading = false;
 
                     hidepDialog();
@@ -286,8 +284,9 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
                                         Log.e("Profile", "Malformed JSON: \"" + response.toString() + "\"");
                                             success();
                                     } else {
-                                        showAlert(errormsg);
+                                        showAlert(getString(R.string.error_server_connect));
                                         Log.e("Profile", "Could not parse malformed JSON: \"" + response.toString() + "\"");
+                                        Crashlytics.log("Error Register Phone");
                                     }
                                 }
                             }, new Response.ErrorListener() {
@@ -295,7 +294,8 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
                         public void onErrorResponse(VolleyError error) {
 
                             Log.e("Error register phone", "Malformed JSON: \"" + error.getMessage() + "\"");
-                            showAlert(errormsg);
+                            showAlert(getString(R.string.error_server_connect));
+                            Crashlytics.log("Error Response Register Phone");
                         }
 
                     })

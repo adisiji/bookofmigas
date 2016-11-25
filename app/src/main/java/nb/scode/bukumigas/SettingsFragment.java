@@ -27,7 +27,7 @@ import nb.scode.bukumigas.util.CustomRequest;
 
 public class SettingsFragment extends PreferenceFragment implements Constants {
 
-    private Preference itemContactUs, aboutPreference, itemTerms, itemThanks, itemNotifications;
+    private Preference itemContactUs, aboutPreference, itemTerms, itemThanks;
 
     private ProgressDialog pDialog;
 
@@ -55,7 +55,6 @@ public class SettingsFragment extends PreferenceFragment implements Constants {
         aboutPreference = findPreference("settings_version");
         itemTerms = findPreference("settings_terms");
         itemThanks = findPreference("settings_thanks");
-        itemNotifications = findPreference("settings_push_notifications");
         itemContactUs = findPreference("settings_contact_us");
 
         itemContactUs.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

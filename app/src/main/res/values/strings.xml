@@ -50,21 +50,17 @@
     <string name="msg_loading_2">Loading. Please wait&#8230;</string>
     <string name="msg_network_error">Please check your Internet connection</string>
     <string name="msg_account_blocked">This account is blocked by a moderator.</string>
-    <string name="msg_copied_to_clipboard">Copied to clipboard.</string>
-    <string name="msg_enter_item">Please write something or attach photo.</string>
-    <string name="msg_enter_msg">Please write something or attach photo.</string>
-    <string name="msg_password_changed">Password successfully changed</string>
-    <string name="msg_settings_saved">Settings successfully saved.</string>
+
     <string name="msg_ticket_send_success">Your request is accepted! You will receive a response to the email, which is indicated in the request.</string>
     <string name="msg_password_reset_link_sent">A message with link to reset your password has been sent to your email.</string>
     <string name="msg_no_such_user_in_bd">No such user in database</string>
     <string name="msg_connect_to_facebook_removed">Connect with your Facebook account removed.</string>
 
     <string name="error_signin">Incorrect username or password</string>
-    <string name="error_internet_connection">Tidak ada koneksi internet</string>
+    <string name="error_internet_connection">No internet connection!</string>
     <string name="error_data_loading">When loading data error has occurred. Check your network connection.</string>
     <string name="error_field_empty">Required fields are empty</string>
-
+    <string name="error_server_connect">Error sonnecting to server!</string>
 
     <string name="placeholder_email">Email</string>
     <string name="placeholder_subject">Subject</string>

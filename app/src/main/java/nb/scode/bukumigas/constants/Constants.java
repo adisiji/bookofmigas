@@ -2,9 +2,6 @@ package nb.scode.bukumigas.constants;
 
 public interface Constants {
 
-    Boolean EMOJI_KEYBOARD = true; // false = Do not display your own Emoji keyboard | true = allow display your own Emoji keyboard
-
-    Boolean FACEBOOK_AUTHORIZATION = true; // false = Do not show buttons Login/Signup with Facebook | true = allow display buttons Login/Signup with Facebook
 
     String WEB_SITE = "http://bukumigas.ourgoodhealth.us/";  //web site url address
 
@@ -22,7 +19,7 @@ public interface Constants {
 
     String METHOD_ACCOUNT_LOGOUT = API_DOMAIN + "api/" + API_VERSION + "/method/account.logOut" + API_FILE_EXTENSION;
 
-    public static final String METHOD_ACCOUNT_SET_GEO_LOCATION = API_DOMAIN + "api/" + API_VERSION + "/method/account.setGeoLocation" + API_FILE_EXTENSION;
+
 
     String METHOD_CATEGORIES_GET = API_DOMAIN + "api/" + API_VERSION + "/method/categories.get" + API_FILE_EXTENSION;
     String METHOD_CATEGORY_GET = API_DOMAIN + "api/" + API_VERSION + "/method/category.get" + API_FILE_EXTENSION;
@@ -32,12 +29,11 @@ public interface Constants {
     String METHOD_PROFILE_UPLOADPHOTO = API_DOMAIN + "api/" + API_VERSION + "/method/profile.uploadPhoto" + API_FILE_EXTENSION;
     String METHOD_PROFILE_UPLOADCOVER = API_DOMAIN + "api/" + API_VERSION + "/method/profile.uploadCover" + API_FILE_EXTENSION;
 
-    public static final String METHOD_NOTIFICATIONS_GET = API_DOMAIN + "api/" + API_VERSION + "/method/notifications.get" + API_FILE_EXTENSION;
-    public static final String METHOD_ITEM_GET = API_DOMAIN + "api/" + API_VERSION + "/method/item.get" + API_FILE_EXTENSION;
+
     String METHOD_STREAM_GET = API_DOMAIN + "api/" + API_VERSION + "/method/stream.get" + API_FILE_EXTENSION;
     String METHOD_POPULAR_GET = API_DOMAIN + "api/" + API_VERSION + "/method/popular.get" + API_FILE_EXTENSION;
 
-    public static final String METHOD_APP_CHECKUSERNAME = API_DOMAIN + "api/" + API_VERSION + "/method/app.checkUsername" + API_FILE_EXTENSION;
+
     String METHOD_APP_TERMS = API_DOMAIN + "api/" + API_VERSION + "/method/app.terms" + API_FILE_EXTENSION;
     String METHOD_APP_THANKS = API_DOMAIN + "api/" + API_VERSION + "/method/app.thanks" + API_FILE_EXTENSION;
     String METHOD_APP_SEARCH = API_DOMAIN + "api/" + API_VERSION + "/method/app.search" + API_FILE_EXTENSION;
@@ -46,8 +42,7 @@ public interface Constants {
 
     String METHOD_FAVORITES_GET = API_DOMAIN + "api/" + API_VERSION + "/method/favorites.get" + API_FILE_EXTENSION;
 
-    public static final String METHOD_COMMENTS_REMOVE = API_DOMAIN + "api/" + API_VERSION + "/method/comments.remove" + API_FILE_EXTENSION;
-    public static final String METHOD_COMMENTS_NEW = API_DOMAIN + "api/" + API_VERSION + "/method/comments.new" + API_FILE_EXTENSION;
+
 
     int POPULAR_CONST_1 = 0; // All Time
     int POPULAR_CONST_2 = 1; // Day
@@ -82,8 +77,6 @@ public interface Constants {
 
     public static final int ITEM_EDIT = 10;
     public static final int STREAM_NEW_POST = 11;
-    public static final int ACTION_LOGIN = 100;
-    public static final int ACTION_SIGNUP = 101;
 
     public static final String TAG = "TAG";
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "308887032831",
+    "firebase_url": "https://bukumigas.firebaseio.com",
+    "project_id": "bukumigas",
+    "storage_bucket": "bukumigas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308887032831:android:b189be0efdbae1d6",
+        "android_client_info": {
+          "package_name": "nb.scode.bukumigas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308887032831-fte62qkag5qpu07v033egv7r19cbv45a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nb.scode.bukumigas",
+            "certificate_hash": "1B5E6E966A015CA1AF71CC7EDC6CECFF1FB66B76"
+          }
+        },
+        {
+          "client_id": "308887032831-skre4doosdhgm1j2jbmb1oo7703dkl6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZt1r6b9uhnjeUf0UxOGhNeX4fARx9uWA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308887032831-skre4doosdhgm1j2jbmb1oo7703dkl6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

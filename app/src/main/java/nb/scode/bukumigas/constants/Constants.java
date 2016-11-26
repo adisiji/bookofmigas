@@ -3,11 +3,11 @@ package nb.scode.bukumigas.constants;
 public interface Constants {
 
 
-    String WEB_SITE = "http://bukumigas.ourgoodhealth.us/";  //web site url address
+    String WEB_SITE = "http://bukusaku.esidu,org/";  //web site url address
 
     String CLIENT_ID = "1";  //Client ID | For identify the application | Example: 12567
 
-    String API_DOMAIN = "http://bukumigas.ourgoodhealth.us/";  //url address to which the application sends requests
+    String API_DOMAIN = "http://bukusaku.esidu.org/";  //url address to which the application sends requests
 
     String API_FILE_EXTENSION = ".inc.php";
     String API_VERSION = "v1";

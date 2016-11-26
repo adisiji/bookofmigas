@@ -17,9 +17,6 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-
 import nb.scode.bukumigas.app.App;
 import nb.scode.bukumigas.dialogs.ErrorStartDialog;
 
@@ -31,8 +28,6 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
     private String pathurl;
     private WebView myWebView;
     private ErrorStartDialog errorDialog;
-    private InterstitialAd interstitialAd;
-    private boolean bookshow =false;
     private static final String UA_Chrome = "Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 " +
             "(KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [WebView Android/v2.0]";
     private TextView loading;
@@ -49,9 +44,6 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_view);
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
-        requestInterstitial();
         myWebView = (WebView) findViewById(R.id.webview);
         loading = (TextView)findViewById(R.id.pdf_view_loading);
         progressBar = (ProgressBar)findViewById(R.id.prg_load_book);
@@ -102,7 +94,6 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
                 view.setVisibility(View.VISIBLE);
                 loading.setVisibility(GONE);
                 progressBar.setVisibility(GONE);
-                bookshow = true;
             }
 
             @TargetApi(android.os.Build.VERSION_CODES.M)
@@ -147,21 +138,6 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
             webview.loadDataWithBaseURL(null,htmlData, "text/html", "UTF-8",null);
             webview.invalidate();
         }
-    }
-
-    @Override
-    public void onBackPressed(){
-        if(interstitialAd.isLoaded() && bookshow)
-            interstitialAd.show();
-        super.onBackPressed();
-    }
-
-    private void requestInterstitial(){
-        AdRequest.Builder adRequest = new AdRequest.Builder();
-        adRequest.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
-        adRequest.addTestDevice("AB65D4D610C6856E00BE2BB6B4D907D2");
-        AdRequest request = adRequest.build();
-        interstitialAd.loadAd(request);
     }
 
     @Override

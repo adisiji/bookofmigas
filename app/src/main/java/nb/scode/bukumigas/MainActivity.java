@@ -1,13 +1,10 @@
 package nb.scode.bukumigas;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -62,7 +59,7 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
 
         } else {
 
-            fragment = new StreamFragment();
+            fragment = new CategoriesFragment();
             restore = false;
             mTitle = getString(R.string.app_name);
         }
@@ -98,7 +95,7 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
 
         if (!restore) {
 
-            // Show default section "Stream"
+            // Show default section "Categories"
 
             displayView(1);
         }
@@ -143,7 +140,7 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
 
                 page = 1;
 
-                fragment = new StreamFragment();
+                fragment = new CategoriesFragment();
                 getSupportActionBar().setTitle(R.string.page_1);
 
                 action = true;
@@ -155,12 +152,13 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
 
                 page = 2;
 
-                fragment = new CategoriesFragment();
+                fragment = new StreamFragment();
                 getSupportActionBar().setTitle(R.string.page_2);
 
                 action = true;
 
                 break;
+
             }
 
 

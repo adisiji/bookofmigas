@@ -12,8 +12,8 @@
 
     <!-- AdMob Banner Id -->
 
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstitial_full_screen">ca-app-pub-0664570763252260/1769900428</string>
+    <string name="banner_ad_unit_id">ca-app-pub-4749544530775798/1711152860</string>
+    <string name="interstitial_full_screen">ca-app-pub-4749544530775798/4525018467</string>
 
     <!-- Share text -->
 
@@ -112,8 +112,8 @@
     <string name="settings_account_username">account_username</string>
     <string name="settings_account_access_token">access_token</string>
 
-    <string name="page_1">Buku Terbaru</string>
-    <string name="page_2">Kategori</string>
+    <string name="page_1">Kategori</string>
+    <string name="page_2">Buku Terbaru</string>
     <string name="page_3">Pencarian</string>
     <string name="page_4">Buku Populer</string>
     <string name="page_5">Buku Favorit</string>
@@ -121,8 +121,8 @@
     <string name="page_7">Profile</string>
 
     <string-array name="navDrawerItems">
-        <item>Buku Terbaru</item>
         <item>Kategori</item>
+        <item>Buku Terbaru</item>
         <item>Cari Buku</item>
         <item>Buku Populer</item>
         <item>Buku Favorit</item>
@@ -130,8 +130,8 @@
     </string-array>
 
     <string-array name="navDrawerIcons">
-        <item>@drawable/ic_action_stream</item>
         <item>@drawable/ic_action_categories</item>
+        <item>@drawable/ic_action_stream</item>
         <item>@drawable/ic_action_search</item>
         <item>@drawable/ic_action_popular</item>
         <item>@drawable/ic_action_favorites</item>

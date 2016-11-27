@@ -17,10 +17,14 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import nb.scode.bukumigas.app.App;
 import nb.scode.bukumigas.dialogs.ErrorStartDialog;
 
 import static android.view.View.GONE;
+import static nb.scode.bukumigas.constants.Constants.ADMOB_ENABLED;
 
 
 public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDialog.MyAlertListener{
@@ -48,7 +52,7 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
         loading = (TextView)findViewById(R.id.pdf_view_loading);
         progressBar = (ProgressBar)findViewById(R.id.prg_load_book);
         fm = getSupportFragmentManager();
-
+        setAds();
         if(savedInstanceState == null) {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
@@ -118,6 +122,14 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
         });
         loadPage();
 
+    }
+
+    private void setAds(){
+        if (App.getInstance().getAdmob() == ADMOB_ENABLED) {
+            AdView mAdView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
     }
 
     private void loadPage(){

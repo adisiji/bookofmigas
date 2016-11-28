@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -46,8 +47,7 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
 
     RelativeLayout loadingScreen;
     private String username, password, devicename, seed, refreshedToken;
-    private Boolean loading = false, fresh=false;
-    private static ErrorStartDialog errorDialog;
+    private Boolean loading = false, fresh=false, save=false;
     private Handler handler;
     private Runnable runnableCode;
 
@@ -323,14 +323,23 @@ public class AppActivity extends ActivityBase implements ErrorStartDialog.MyAler
                     App.getInstance().addToRequestQueue(jsonReq);
         }
             else {
-            showAlert(getString(R.string.error_internet_connection));
+            if(!save){
+                showAlert(getString(R.string.error_internet_connection));
+            }
         }
     }
 
     private void showAlert(String message){
-        FragmentManager fm = getSupportFragmentManager();
-        errorDialog = ErrorStartDialog.newInstance(message);
-        errorDialog.show(fm,"fragment");
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment prev = fm.findFragmentByTag("dialog");
+            if(prev!=null){
+                fm.beginTransaction().remove(prev).commit();
+            }
+            fm.beginTransaction().addToBackStack(null).commit();
+            // Create and show the dialog.
+            ErrorStartDialog newFragment = ErrorStartDialog.newInstance(message);
+            newFragment.show(fm, "dialog");
+
     }
 
 }

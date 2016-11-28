@@ -24,6 +24,7 @@ import nb.scode.bukumigas.R;
 public class ErrorStartDialog extends DialogFragment {
 
     private MyAlertListener alertListener;
+    private String content;
 
     public interface MyAlertListener{
         void onClickAlert();
@@ -46,6 +47,7 @@ public class ErrorStartDialog extends DialogFragment {
         super.onCreate(savedInstanceState);
         try {
             alertListener = (MyAlertListener) getActivity();
+            content = getArguments().getString("msg","ERROR ALERT");
         } catch (ClassCastException e) {
             throw new ClassCastException("Calling Fragment must implement OnAddFriendListener");
         }
@@ -54,18 +56,13 @@ public class ErrorStartDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.start_alert_dialog, container);
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View view = inflater.inflate(R.layout.start_alert_dialog, container);
         // Get field from view
         TextView textView = (TextView)view.findViewById(R.id.message);
         TextView title = (TextView)view.findViewById(R.id.title);
         title.setText("ERROR");
-        String msg = getArguments().getString("msg","ERROR ALERT");
-        textView.setText(msg);
+        textView.setText(content);
         Button BtnOk = (Button)view.findViewById(R.id.positive_button);
 
         BtnOk.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +86,8 @@ public class ErrorStartDialog extends DialogFragment {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getDialog().setCancelable(false);
         getDialog().setCanceledOnTouchOutside(false);
+        return view;
     }
+
 
 }

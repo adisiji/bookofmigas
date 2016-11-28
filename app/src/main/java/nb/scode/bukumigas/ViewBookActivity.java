@@ -1,10 +1,13 @@
 package nb.scode.bukumigas;
 
 import android.annotation.TargetApi;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,12 +34,11 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
 
     private String pathurl;
     private WebView myWebView;
-    private ErrorStartDialog errorDialog;
     private static final String UA_Chrome = "Mozilla/5.0 (Linux; Android 4.4.4; One Build/KTU84L.H4) AppleWebKit/537.36 " +
             "(KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 [WebView Android/v2.0]";
     private TextView loading;
     private ProgressBar progressBar;
-    private FragmentManager fm;
+
 
     @Override
     public void onClickAlert(){
@@ -51,7 +53,7 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
         myWebView = (WebView) findViewById(R.id.webview);
         loading = (TextView)findViewById(R.id.pdf_view_loading);
         progressBar = (ProgressBar)findViewById(R.id.prg_load_book);
-        fm = getSupportFragmentManager();
+
         setAds();
         if(savedInstanceState == null) {
             Intent intent = getIntent();
@@ -62,7 +64,7 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
         {
             pathurl = savedInstanceState.getString("pathurl");
         }
-        errorDialog = ErrorStartDialog.newInstance("Cannot load page!");
+
         myWebView.getSettings().setAppCacheMaxSize(1024*1024*10); //cache 10MB
         myWebView.getSettings().setAllowContentAccess(true);
         myWebView.getSettings().setAppCacheEnabled(true);
@@ -93,7 +95,6 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
                 progressBar.setVisibility(View.VISIBLE);
             }
 
-            @Override
             public void onPageFinished(WebView view, String url) {
                 view.setVisibility(View.VISIBLE);
                 loading.setVisibility(GONE);
@@ -106,7 +107,7 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
                 super.onReceivedError(view, request, error);
                 Log.e("Error received","BAD BOY");
                 loadErrorPage(view);
-                errorDialog.show(fm,"vb_fragment");
+                showerror();
                 progressBar.setProgress(0);
             }
 
@@ -116,7 +117,7 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
                 super.onReceivedError(view,errorCode,description,failingUrl);
                 Log.e("Error received","BAD BOY");
                 loadErrorPage(view);
-                errorDialog.show(fm,"vb_fragment");
+                showerror();
                 progressBar.setProgress(0);
             }
         });
@@ -137,10 +138,21 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
             myWebView.loadUrl(pathurl);
         }
         else {
-            ErrorStartDialog errorDialog = ErrorStartDialog.newInstance(getString(R.string.msg_network_error));
             loadErrorPage(myWebView);
-            errorDialog.show(fm,"vb_fragment");
+            showerror();
         }
+    }
+
+    private void showerror(){
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment prev = fm.findFragmentByTag("dialog");
+        if(prev!=null){
+            fm.beginTransaction().remove(prev).commit();
+        }
+        fm.beginTransaction().addToBackStack(null).commit();
+        // Create and show the dialog.
+        DialogFragment newFragment = ErrorStartDialog.newInstance("Cannot load page!");
+        newFragment.show(fm, "dialog");
     }
 
     private void loadErrorPage(WebView webview){
@@ -155,7 +167,7 @@ public class ViewBookActivity extends AppCompatActivity implements  ErrorStartDi
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);
-        Log.d("onSaveInstance","ViewbOkk");
+        Log.d("onSaveInstance","Viewbook");
         savedInstanceState.putString("pathurl",pathurl);
 
     }
